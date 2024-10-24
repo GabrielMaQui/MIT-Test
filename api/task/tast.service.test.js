@@ -1,24 +1,27 @@
 import { describe, it, expect } from "vitest";
-import { getAllTask } from "./task.service";
+//import { getAllTask } from "./task.service";
 
-//const request = require('supertest');
-//const app = require('../app'); // Adjust to your project structure
-
-
+const supertest = require('supertest');
+const app = require('../../app');
 
 //Probando el vitest
+const request = supertest(app);
+
+//API Test
 describe('Task API ', () => {
-  describe('getAllTask', () => {
-    it('Should return the Array ', async () => {
+  // GET ALL
+  describe('getAllTask', async () => {
+    it('Should return the all task ', async () => {
 
       //Arrange
-      const expected = Array
 
       //Act
-      const result = getAllTask();
 
+      //el request va solo
+      const response = await request.get('/api/tasks');
       //Assert
-      expect(result).toBeInstanceOf(expected);
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toBeInstanceOf(Array);
     });
   })
 })
