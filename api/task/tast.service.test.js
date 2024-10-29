@@ -80,13 +80,10 @@ describe('Task API ', () => {
 
   //Buscar una task
   describe('oneTask', async () => {
-    it('should edit the a task', async () => {
+    it('should get the a task', async () => {
 
       //Arrange
       const rsp = 200;
-      const body = {
-        describe: 'New Description 3'
-      };
       const id = 2;
       //Act
       const result = await request.get('/api/tasks/'+id).send();
@@ -94,5 +91,19 @@ describe('Task API ', () => {
       expect(result.statusCode).toBe(rsp);
     })
   })
+
+  //eliminar una task
+  describe('oneTask', async () => {
+    it('should delete the a task', async () => {
+
+      //Arrange
+      const rsp = 204;
+      const id = 2;
+      //Act
+      const result = await request.delete('/api/tasks/'+id).send();
+      //Asset
+      expect(result.statusCode).toBe(rsp);
+    })
+  });
 
 })

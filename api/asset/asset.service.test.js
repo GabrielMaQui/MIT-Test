@@ -10,7 +10,7 @@ const request = supertest(app);
 describe('Asset API ', () => {
   // GET ALL
   describe('getAllAssets', async () => {
-    it('Should return the all task ', async () => {
+    it('Should return the all assets ', async () => {
 
       //Arrange
       const rsp = 200;
@@ -25,7 +25,7 @@ describe('Asset API ', () => {
   });
 
   describe('postAsset', async () => {
-    it('should reject submit the task', async () => {
+    it('should reject submit the assets', async () => {
 
       //Arrange
       const rsp = 201;
@@ -46,30 +46,45 @@ describe('Asset API ', () => {
   });
 
   describe('putAsset', async () => {
-    it('should edit the a task', async () => {
-
+    it('should edit the a asset', async () => {
       //Arrange
       const rsp = 200;
       const body = {
-        price: 300,
-
+        price: 300
       };
-      const id = '2';
+
+      const id = '1';
+
       //Act
       const result = await request.patch('/api/assets/'+ id).send(body);
+
       //Asset
       expect(result.statusCode).toBe(rsp);
     })
   });
 
   describe('oneAsset', async () => {
-    it('should edit the a task', async () => {
+    it('should edit the a asset', async () => {
 
       //Arrange
       const rsp = 200;
-      const id = '1';
+      const id = '2';
       //Act
       const result = await request.get('/api/assets/'+ id).send();
+      //Asset
+      expect(result.statusCode).toBe(rsp);
+    })
+  })
+
+   //eliminar una asset
+   describe('deleteAsset', async () => {
+    it('should delete the a asset', async () => {
+
+      //Arrange
+      const rsp = 204;
+      const id = '2';
+      //Act
+      const result = await request.delete('/api/assets/'+ id).send();
       //Asset
       expect(result.statusCode).toBe(rsp);
     })
