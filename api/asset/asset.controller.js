@@ -41,7 +41,7 @@ function getAllHandler(req, res) {
 function getByIdHandler(req, res) {
   const { id } = req.params;
 
-  const asset = getAssetById(Number(id));
+  const asset = getAssetById(id);
   if (!asset) {
     res.status(404).json({ error: 'Asset not found' });
     return;
@@ -67,7 +67,8 @@ function updateHandler(req, res) {
   const { id } = req.params;
 
   try {
-    const asset = updateAsset(Number(id), body);
+    //Cambio de number a string
+    const asset = updateAsset(id, body);
     if (!asset) {
       res.status(404).json({ error: 'Asset not found' });
       return;
